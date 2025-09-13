@@ -48,6 +48,14 @@ const personajes = [
         descripcion: "Líder de los Fremen, aliado fundamental de Paul en Arrakis.",
         imagen: "assets/img/stilgar.jpg"
     }
+    ,
+    {
+        nombre: "Thufir Hawat",
+        planeta: "Caladan / Arrakis",
+        afiliacion: "Casa Atreides (Mentat)",
+        descripcion: "Maestro de espías y Mentat de la Casa Atreides, estratega brillante y leal consejero.",
+        imagen: "assets/img/thufir.jpg"
+    }
 ];
 
 function crearTarjeta(personaje) {
