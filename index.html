@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personajes de Dune</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div id="dune-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1920 720" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:0;left:0;width:100vw;height:100%;z-index:0;pointer-events:none;">
+            <!-- Sol de Arrakis -->
+            <defs>
+                <linearGradient id="sunGlow" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#fff2b8" stop-opacity="0.95" />
+                    <stop offset="100%" stop-color="#ffd07a" stop-opacity="0.12" />
+                </linearGradient>
+            </defs>
+            <circle cx="420" cy="420" r="160" fill="url(#sunGlow)" />
+            <circle cx="420" cy="420" r="96" fill="#ffd07a" />
+            <!-- Dunas (capas con sombras suaves) -->
+            <path d="M0 520 Q 360 420 760 520 T 1520 480 T 1920 640 V720 H0Z" fill="#e9c78a"/>
+            <path d="M0 600 Q 560 500 1200 600 T 1920 680 V720 H0Z" fill="#d4a166"/>
+            <path d="M0 720 Q 900 640 1920 720 V720 H0Z" fill="#b97324" fill-opacity="0.9"/>
+        </svg>
+    </div>
+    <canvas id="sand-canvas"></canvas>
+    <h1>Personajes de Dune</h1>
+    <div class="card-container" id="card-container">
+        <!-- Las tarjetas de personajes se insertarán aquí por JS -->
+    </div>
+    <script src="assets/app.js"></script>
+</body>
+</html>
