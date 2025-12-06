@@ -1,4 +1,9 @@
-const personajes = [
+// Configuración de la API
+const API_URL = 'https://fzwu5bl246.execute-api.us-east-1.amazonaws.com/prod/personajes';
+const USE_LOCAL_DATA = false;
+
+// Datos locales para desarrollo (fallback)
+const personajesLocal = [
     {
         nombre: "Paul Atreides",
         planeta: "Caladan / Arrakis",
@@ -47,8 +52,7 @@ const personajes = [
         afiliacion: "Fremen",
         descripcion: "Líder de los Fremen, aliado fundamental de Paul en Arrakis.",
         imagen: "assets/img/stilgar.jpg"
-    }
-    ,
+    },
     {
         nombre: "Thufir Hawat",
         planeta: "Caladan / Arrakis",
@@ -58,6 +62,27 @@ const personajes = [
     }
 ];
 
+// Función para obtener personajes de la API
+async function obtenerPersonajes() {
+    if (USE_LOCAL_DATA) {
+        return personajesLocal;
+    }
+
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al obtener personajes de la API:', error);
+        console.log('Usando datos locales como fallback');
+        return personajesLocal;
+    }
+}
+
+// Función para crear una tarjeta de personaje
 function crearTarjeta(personaje) {
     return `
     <div class="card">
@@ -70,9 +95,18 @@ function crearTarjeta(personaje) {
     `;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Función para renderizar las tarjetas
+async function renderizarPersonajes() {
     const contenedor = document.getElementById('card-container');
+    contenedor.innerHTML = '<div style="color: white; text-align: center; width: 100%;">Cargando personajes...</div>';
+    
+    const personajes = await obtenerPersonajes();
     contenedor.innerHTML = personajes.map(crearTarjeta).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Renderizar personajes
+    renderizarPersonajes();
 
     // Partículas de arena
     const canvas = document.getElementById('sand-canvas');

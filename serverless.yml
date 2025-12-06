@@ -1,0 +1,63 @@
+service: dune-personajes-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage, 'prod'}
+  
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${self:provider.stage}
+  
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+functions:
+  personajesApi:
+    handler: backend/lambda/personajes.handler
+    events:
+      - http:
+          path: /personajes
+          method: get
+          cors: true
+      - http:
+          path: /personajes
+          method: post
+          cors: true
+      - http:
+          path: /personajes/{id}
+          method: get
+          cors: true
+      - http:
+          path: /personajes/{id}
+          method: put
+          cors: true
+      - http:
+          path: /personajes/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    PersonajesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
