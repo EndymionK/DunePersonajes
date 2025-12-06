@@ -111,17 +111,8 @@ aws s3 sync . s3://dune-personajes-frontend-prod --exclude "backend/*" --exclude
 
 ## 🛠️ Servicios AWS Utilizados
 
-| Servicio | Propósito | Costo estimado/mes |
-|----------|-----------|-------------------|
-| **S3** | Hosting frontend estático | $0.03 |
-| **Lambda** | Funciones serverless | $0.20 |
-| **API Gateway** | REST API endpoints | $0.04 |
-| **DynamoDB** | Base de datos NoSQL | $0.02 |
-| **CloudWatch** | Logs y monitoreo | $0.25 |
-| **EC2** | Instancia de prueba (detenida) | $0.80 |
-| **VPC** | Red virtual | $0.00 |
-| **IAM** | Gestión de permisos | $0.00 |
-| **TOTAL** | | **~$1.34/mes** |
+<img width="1878" height="829" alt="image" src="https://github.com/user-attachments/assets/2a9d9b46-eb4a-4cf7-9162-24aed1a6f8ea" />
+
 
 ## 📊 API Endpoints
 
