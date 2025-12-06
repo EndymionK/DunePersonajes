@@ -65,13 +65,9 @@ DunePersonajes/
 │       ├── s3-trigger.js       # Lambda para eventos S3
 │       └── package.json        # Dependencias
 ├── serverless.yml              # IaC - Serverless Framework
-├── cloudformation.yaml         # IaC - CloudFormation
-├── cloudformation-backend.yaml # IaC - CloudFormation (Backend)
-├── docs/
-│   ├── ARQUITECTURA.md         # Descripción de arquitectura
-│   └── DOCUMENTO_TECNICO.md    # Documento técnico completo
-├── deploy/
-│   └── GUIA_DESPLIEGUE.md      # Guía paso a paso
+├── cloudformation.yaml         # IaC - CloudFormation completo
+├── terraform/
+│   └── main.tf                 # IaC - Terraform
 └── README.md                   # Este archivo
 ```
 
@@ -110,7 +106,7 @@ Actualiza la constante `API_URL` en `assets/app.js` con la URL de tu API Gateway
 5. **Desplegar frontend en S3**
 ```bash
 aws s3 mb s3://dune-personajes-frontend-prod
-aws s3 sync . s3://dune-personajes-frontend-prod --exclude "backend/*" --exclude "docs/*"
+aws s3 sync . s3://dune-personajes-frontend-prod --exclude "backend/*" --exclude "*.yml" --exclude "*.yaml" --exclude "terraform/*"
 ```
 
 ## 🛠️ Servicios AWS Utilizados
@@ -220,12 +216,6 @@ Métricas disponibles en AWS Console → CloudWatch:
 - ✅ **VPC** con aislamiento de red
 - ✅ **No hay credenciales hardcodeadas** en el código
 - ✅ **Logs centralizados** en CloudWatch
-
-## 📚 Documentación
-
-- 📖 [Guía de Despliegue Completa](deploy/GUIA_DESPLIEGUE.md)
-- 🏗️ [Descripción de Arquitectura](docs/ARQUITECTURA.md)
-- 📄 [Documento Técnico](docs/DOCUMENTO_TECNICO.md)
 
 ## 🎓 Objetivos Académicos Cumplidos
 
