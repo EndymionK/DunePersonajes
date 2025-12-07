@@ -23,32 +23,8 @@ Aplicación web completa desplegada en AWS que permite gestionar información de
 - ✅ **Arquitectura escalable** y optimizada para costos
 
 ## 🏗️ Arquitectura
+<img width="920" height="579" alt="image" src="https://github.com/user-attachments/assets/b19e605f-5790-45a8-ace2-8c674a40ecf6" />
 
-```
-┌─────────────┐
-│   Usuarios  │
-└──────┬──────┘
-       │ HTTPS
-       ▼
-┌─────────────────────────────────┐
-│  Amazon S3 (Frontend Static)     │
-│  - index.html, app.js, CSS       │
-└──────────────┬──────────────────┘
-               │
-               ▼
-┌─────────────────────────────────┐
-│  API Gateway → Lambda Functions  │
-│  - CRUD de personajes            │
-│  - Procesamiento de eventos      │
-└──────────────┬──────────────────┘
-               │
-               ▼
-┌─────────────────────────────────┐
-│  Amazon DynamoDB (NoSQL)         │
-│  - Tabla de personajes           │
-│  - Tabla de logs                 │
-└─────────────────────────────────┘
-```
 
 ## 📂 Estructura del Proyecto
 
